@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Musa del Giorno</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+    #musa {
+      max-height: 100%;
+      transition: transform 0.3s ease;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 105, 180, 0.5);
+    }
+    #musa:hover {
+      transform: scale(1.02);
+    }
+    #quote {
+      position: absolute;
+      bottom: 40px;
+      background: rgba(0,0,0,0.6);
+      padding: 15px 30px;
+      border-radius: 20px;
+      font-size: 1.5rem;
+      animation: fadein 2s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <img id="musa" src="" alt="Musa del giorno"/>
+  <div id="quote"></div>
+  <audio id="sound" src="laugh.mp3" preload="auto"></audio>
+  <script>
+    const images = [
+      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+      "https://images.pexels.com/photos/3760855/pexels-photo-3760855.jpeg",
+      "https://images.pexels.com/photos/3760857/pexels-photo-3760857.jpeg",
+      "https://images.pexels.com/photos/13914996/pexels-photo-13914996.jpeg",
+      "https://cdn.openart.ai/uploads/image_Hvjq6IBY_1692463708886_512.webp"
+    ];
+    const quotes = [
+      "Sei bellissimo.",
+      "Mi sei mancato…",
+      "Chi è quel dio che vedo?",
+      "Sei troppo sexy per lavorare.",
+      "Bentornato, amore.",
+      "Cosa posso fare per te, bellezza?"
+    ];
+    const img = document.getElementById('musa');
+    const quote = document.getElementById('quote');
+    const sound = document.getElementById('sound');
+
+    function pickRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    img.src = pickRandom(images);
+    quote.textContent = pickRandom(quotes);
+
+    img.addEventListener('mouseenter', () => {
+      sound.currentTime = 0;
+      sound.play();
+    });
+  </script>
+</body>
+</html>
